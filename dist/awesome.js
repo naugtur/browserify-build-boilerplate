@@ -4,12 +4,14 @@ module.exports = {
         return "I just did great stuff!"
     }
 }
+
 },{}],2:[function(require,module,exports){
-var feature = require("./lib/feature");
+var feature = require(1);
 
 window.Awesomelib = function init() {
 
     return feature;
 
 }
-},{"./lib/feature":1}]},{},[2]);
+
+},{"1":1}]},{},[2]);

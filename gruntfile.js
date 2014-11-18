@@ -17,8 +17,10 @@ module.exports = function (grunt) {
                 }
             }
         },
+        unpathify: {
+            files: ["dist/awesome.js"]
+        },
 
-        
         uglify: {
             options: {
                 report: "gzip", //only shows with --verbose in current version
@@ -43,8 +45,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-browserify");
     grunt.loadNpmTasks("grunt-contrib-clean");
     grunt.loadNpmTasks("grunt-contrib-uglify");
+    grunt.loadNpmTasks("unpathify");
 
-    grunt.registerTask("build", ["clean", "browserify", "uglify"]);
+    grunt.registerTask("build", ["clean", "browserify", "unpathify", "uglify"]);
 
     grunt.registerTask("default", ["build"]);
 
