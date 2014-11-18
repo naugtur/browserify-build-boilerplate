@@ -11,7 +11,11 @@
   "author": "naugtur@gmail.com",
   "license": "Apache2",
   "dependencies": {
+    "p-promise": "^0.4.9",
     "q": "^1.1.1"
+  },
+  "browser": {
+    "q": "p-promise"
   },
   "devDependencies": {
     "browserify": "^5.13.0",
