@@ -12,13 +12,21 @@ module.exports = function (grunt) {
                 options: {
                     browserifyOptions: {
                         fullPaths: false,
-                        //,standalone: "AwesomeLib" //doesn't work for some reason, I'll fix it some day
+                        insertGlobals: false,
+                        detectGlobals: true, //globals from node - sometimes you don't need them
+                        standalone: "<%=pkg.name %>" //doesn't work for some reason, I'll fix it some day
                     }
                 }
             }
         },
+        //don't use this at all if you don't care much about the size
         unpathify: {
-            files: ["dist/awesome.js"]
+            files: ["dist/awesome.js"],
+            options: {
+                packOptions: {
+                    standalone: "<%=pkg.name %>" //unpathify rebuilds the bundle, so standalone should be set here
+                }
+            }
         },
 
         uglify: {
