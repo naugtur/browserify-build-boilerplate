@@ -10,21 +10,13 @@ module.exports = function (grunt) {
                     "dist/awesome.js": ["src/myawesomelib.js"]
                 },
                 options: {
+                    plugin: ['bundle-collapser/plugin'], //a tool from substack himself
                     browserifyOptions: {
                         fullPaths: false,
                         insertGlobals: false,
                         detectGlobals: true, //globals from node - sometimes you don't need them
-                        standalone: "<%=pkg.name %>" //doesn't work for some reason, I'll fix it some day
+                        standalone: "<%=pkg.name %>" //works now
                     }
-                }
-            }
-        },
-        //don't use this at all if you don't care much about the size
-        unpathify: {
-            files: ["dist/awesome.js"],
-            options: {
-                packOptions: {
-                    standalone: "<%=pkg.name %>" //unpathify rebuilds the bundle, so standalone should be set here
                 }
             }
         },
@@ -55,7 +47,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-uglify");
     grunt.loadNpmTasks("unpathify");
 
-    grunt.registerTask("build", ["clean", "browserify", "unpathify", "uglify"]);
+    grunt.registerTask("build", ["clean", "browserify", "uglify"]);
 
     grunt.registerTask("default", ["build"]);
 
